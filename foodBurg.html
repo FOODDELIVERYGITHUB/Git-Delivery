@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Burgers Menu</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* add some basic styling */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+		}
+		
+		nav {
+			background-color: #444;
+			color: #fff;
+			padding: 10px;
+			display: flex;
+			justify-content: space-between;
+		}
+		
+		nav a {
+			color: #fff;
+			text-decoration: none;
+			margin-right: 20px;
+		}
+		
+		nav a:hover {
+			color: #ff0;
+		}
+		
+		.main {
+			padding: 20px;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		
+		.burger {
+			background-color: #f2f2f2;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			box-shadow: 0 0 5px #ddd;
+			margin: 20px 0;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		
+		.burger img {
+			max-width: 100%;
+			margin-right: 20px;
+		}
+		
+		.burger h2 {
+			margin-top: 0;
+		}
+		
+		.burger span {
+			font-weight: bold;
+			font-size: 1.2rem;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Burgers Menu</h1>
+	</header>
+	<nav>
+		<a href="#">Home</a>
+		<a href="#">Pizza</a>
+		<a href="#">Kebab</a>
+		<a href="#">Burgers</a>
+		<a href="#">Fish & Chips</a>
+	</nav>
+	<main class="main">
+		<div class="burger">
+			<img src="images/ClassicBurger.jpg" alt="Classic Burger">
+			<div>
+				<h2>Classic Burger</h2>
+				<p>A delicious burger made with 100% pure beef patty, lettuce, tomato, onion, pickles, and special sauce.</p>
+				<span>£3.99</span>
+			</div>
+		</div>
+		<div class="burger">
+			<img src="images/CheeseBurger.jpg" alt="Cheeseburger">
+			<div>
+				<h2>Cheeseburger</h2>
+				<p>Our classic burger with an added slice of melted cheese.</p>
+				<span>£2.99</span>
+			</div>
+		</div>
+		<div class="burger">
+			<img src="images/BaconBurger.jpg" alt="Bacon Burger">
+			<div>
+				<h2>Bacon Burger</h2>
+				<p>A mouthwatering burger with crispy bacon, lettuce, tomato, and mayo.</p>
+				<span>£4.99</span>
+			</div>
+		</div>
+	
