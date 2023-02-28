@@ -1,0 +1,161 @@
+/* add some basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    color: #ff0;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.category {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ddd;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.category img {
+    max-width: 100%;
+}
+
+.category h2 {
+    margin-top: 0;
+}
+
+.kebab {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kebab img {
+    max-width: 100%;
+    margin-right: 20px;
+}
+
+.kebab h2 {
+    margin-top: 0;
+}
+
+.kebab span {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.fish {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fish img {
+    max-width: 100%;
+    margin-right: 20px;
+}
+
+.fish h2 {
+    margin-top: 0;
+}
+
+.fish span {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.burger {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.burger img {
+    max-width: 100%;
+    margin-right: 20px;
+}
+
+.burger h2 {
+    margin-top: 0;
+}
+
+.burger span {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.pizza {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pizza img {
+    max-width: 100%;
+    margin-right: 20px;
+}
+
+.pizza h2 {
+    margin-top: 0;
+}
+
+.pizza span {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
