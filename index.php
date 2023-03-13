@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,6 +29,7 @@
 		<a href="/foodKebab.html">Kebab</a>
 		<a href="/foodBurg.html">Burgers</a>
 		<a href="/foodFish.html">Fish & Chips</a>
+		<a href="userdetails.php">Update Profile</a>
 	</nav>
 	<main class="main">
 		<div class="category">
