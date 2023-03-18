@@ -110,7 +110,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 echo '<div class="alert alert-danger">' . $login_err . '</div>';
                             }        
                             ?>
-                            <h3 class="text-center text-info">Login</h3>
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <div class="form-group">
                                     <label for="Email" class="text-info">Email:</label><br>

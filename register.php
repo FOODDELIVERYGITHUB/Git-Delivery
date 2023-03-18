@@ -103,13 +103,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
+<header>
+		<h1>Register Page</h1>
+</header>
 <body>
     <div class="wrapper">
+        <div class="info-text">
         <h2>Circuit Delivery Sign Up</h2>
         <p>Please fill this form to create an account.</p>
+    </div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>email</label>
+                <label>Email</label>
                 <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
                 <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </div>    
@@ -125,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                <!-- <input type="reset" class="btn btn-secondary ml-2" value="Reset"> -->
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>

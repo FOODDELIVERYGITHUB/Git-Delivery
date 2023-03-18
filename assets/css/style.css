@@ -175,6 +175,10 @@ nav a:hover {
         background-color: #555;
 }
 
+.info-text {
+	text-align: center;
+}
+
 /* Sign Up Page */
 		/* add some basic styling */
 		body {

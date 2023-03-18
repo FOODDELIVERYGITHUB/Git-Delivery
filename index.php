@@ -24,7 +24,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<h1>Circuit Food Delivery</h1>
 	</header>
 	<nav>
-		<a href="/index.html">Home</a>
+		<a href="/index.php">Home</a>
 		<a href="/foodPizza.html">Pizza</a>
 		<a href="/foodKebab.html">Kebab</a>
 		<a href="/foodBurg.html">Burgers</a>
