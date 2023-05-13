@@ -3,10 +3,12 @@
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: foodLogin.php");
     exit;
+
 }
+*/
 
 require_once "connect.php";
 $mysqli = $link;
@@ -14,33 +16,45 @@ $mysqli = $link;
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 		
-        $sql1 = "INSERT INTO Card_det(Name, Card_num, Exp_month, CVV, Exp_Year)";
-		$sql2 = "INSERT INTO Billadd(Full_Name, Email, Address, City)";
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$cardname = $_REQUEST['cardname'];
-			$cardnum = $_REQUEST['cardnumber'];
-			$expmn = $_REQUEST['expmonth'];
-			$expyr = $_REQUEST['expyear'];
-			$cvv = $_REQUEST['cvv'];
-			$fname = $_REQUEST['firstname'];
-			$email = $_REQUEST['email'];
-			$address = $_REQUEST['address'];
-			$city = $_REQUEST['city'];
-			
-			$sql1.= " VALUES ('". $cardname ."' , '". $cardnum ."' , '". $expmn ."', '". $cvv ."' , '". $expyr ."');";
-			$sql2.= " VALUES ('". $fname ."' , '". $email."' , '". $address ."', '". $city ."');";
-			
-			 $res1 = mysqli_query($mysqli, $sql1);
-			 $res2 = mysqli_query($mysqli, $sql2);
-			 
-			 if(!$res1 && !$res2){
-				 echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
-			 }else{
-				 echo "Your payment is being processed";
-			 }
-		}
+require_once "connect.php";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+    $cardname = filter_input(INPUT_POST, 'cardname', FILTER_SANITIZE_STRING);
+    $cardnum = filter_input(INPUT_POST, 'cardnumber', FILTER_SANITIZE_STRING);
+    $expmn = filter_input(INPUT_POST, 'expmonth', FILTER_SANITIZE_STRING);
+    $expyr = filter_input(INPUT_POST, 'expyear', FILTER_SANITIZE_STRING);
+    $cvv = filter_input(INPUT_POST, 'cvv', FILTER_SANITIZE_STRING);
+    $fname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
+    $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
+
+    $hashedCardnum = hash('sha256', $cardnum);
+
+    $sql1 = "INSERT INTO Card_det(Name, Card_num, Exp_month, CVV, Exp_Year) VALUES (?, ?, ?, ?, ?)";
+    $stmt1 = mysqli_prepare($mysqli, $sql1);
+    mysqli_stmt_bind_param($stmt1, "sssss", $cardname, $hashedCardnum, $expmn, $cvv, $expyr);
+    $res1 = mysqli_stmt_execute($stmt1);
+
+    $sql2 = "INSERT INTO Billadd(Full_Name, Email, Address, City) VALUES (?, ?, ?, ?)";
+    $stmt2 = mysqli_prepare($mysqli, $sql2);
+    mysqli_stmt_bind_param($stmt2, "ssss", $fname, $email, $address, $city);
+    $res2 = mysqli_stmt_execute($stmt2);
+
+    if ($res1 && $res2) {
+        echo "Your payment is now being processed";
+    } else {
+        echo "Error: " . mysqli_error($mysqli);
+    }
+
+    mysqli_stmt_close($stmt1);
+    mysqli_stmt_close($stmt2);
+}
+
+mysqli_close($mysqli);
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
