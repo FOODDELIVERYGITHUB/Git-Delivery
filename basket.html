@@ -11,7 +11,7 @@
     </head>
 <body>
 	<header>
-		<h1>Kebab Menu</h1>
+		<h1>Basket</h1>
 	</header>
 	<nav>
 		<a href="/index.php">Home</a>
@@ -21,24 +21,20 @@
 		<a href="/foodFish.html">Fish & Chips</a>
 		<a href="/basket.html">Basket</a>
 	</nav>
-	<main class="main">
-		<div class="kebab">
-			<img src="assets/img/ChickenKebab.jpg" alt="Chicken Kebab">
-			<div>
-				<h2>Chicken Kebab</h2>
-				<p>A delicious kebab made with marinated chicken, salad, and garlic sauce.</p>
-				<span>£6.99</span>
-				<button class="add-button">Add</button>
-			</div>
-		</div>
-		<div class="kebab">
-			<img src="assets/img/LambKebab.jpg" alt="Lamb Kebab">
-			<div>
-				<h2>Lamb Kebab</h2>
-				<p>A tasty kebab made with seasoned lamb, salad, and mayo sauce.</p>
-				<span>£6.99</span>
-				<button class="add-button">Add</button>
-			</div>
-		</div>
-		<script src="/assets/js/script.js"></script>
-</body>
+    <!-- Main body for basket -->
+    <body>
+        <table id="basket-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Basket items will be added here dynamically -->
+          </tbody>
+        </table>
+        <p id="total-price"></p>
+        <a href="/checkout.html" class="button">Checkout</a>
+        <script src="/assets/js/script.js"></script>
+</html>
