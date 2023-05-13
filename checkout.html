@@ -1,3 +1,46 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: foodLogin.php");
+    exit;
+}
+
+require_once "connect.php";
+$mysqli = $link;
+        if (!$mysqli){
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+		
+        $sql1 = "INSERT INTO Card_det(Name, Card_num, Exp_month, CVV, Exp_Year)";
+		$sql2 = "INSERT INTO Billadd(Full_Name, Email, Address, City)";
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$cardname = $_REQUEST['cardname'];
+			$cardnum = $_REQUEST['cardnumber'];
+			$expmn = $_REQUEST['expmonth'];
+			$expyr = $_REQUEST['expyear'];
+			$cvv = $_REQUEST['cvv'];
+			$fname = $_REQUEST['firstname'];
+			$email = $_REQUEST['email'];
+			$address = $_REQUEST['address'];
+			$city = $_REQUEST['city'];
+			
+			$sql1.= " VALUES ('". $cardname ."' , '". $cardnum ."' , '". $expmn ."', '". $cvv ."' , '". $expyr ."');";
+			$sql2.= " VALUES ('". $fname ."' , '". $email."' , '". $address ."', '". $city ."');";
+			
+			 $res1 = mysqli_query($mysqli, $sql1);
+			 $res2 = mysqli_query($mysqli, $sql2);
+			 
+			 if(!$res1 && !$res2){
+				 echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+			 }else{
+				 echo "Your payment is being processed";
+			 }
+		}
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +57,7 @@
         <div class="row">
             <div class="col-75">
               <div class="container">    
-                <form action="/thankyou.html">      
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">     
                   <div class="row">
                     <div class="col-50">
                       <h3>Billing Address</h3>
