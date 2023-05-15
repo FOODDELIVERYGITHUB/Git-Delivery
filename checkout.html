@@ -6,19 +6,18 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: foodLogin.php");
     exit;
-
 }
+
 
 require_once "connect.php";
 $mysqli = $link;
-        if (!$mysqli){
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-		
+if (!$mysqli){
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
 require_once "connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
- 
     $cardname = filter_input(INPUT_POST, 'cardname', FILTER_SANITIZE_STRING);
     $cardnum = filter_input(INPUT_POST, 'cardnumber', FILTER_SANITIZE_STRING);
     $expmn = filter_input(INPUT_POST, 'expmonth', FILTER_SANITIZE_STRING);
@@ -29,11 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
     $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
 
-    $hashedCardnum = hash('sha256', $cardnum);
+    // Encrypt the card number
+    $encryptionKey = 'tinounzafudati34'; 
+    $iv = openssl_random_pseudo_bytes(16);
+    $encryptedCardnum = openssl_encrypt($cardnum, 'AES-128-CBC', $encryptionKey, OPENSSL_RAW_DATA, $iv);
+    $encodedIV = base64_encode($iv);
+    $encodedCardnum = base64_encode($encryptedCardnum);
 
     $sql1 = "INSERT INTO Card_det(Name, Card_num, Exp_month, CVV, Exp_Year) VALUES (?, ?, ?, ?, ?)";
     $stmt1 = mysqli_prepare($mysqli, $sql1);
-    mysqli_stmt_bind_param($stmt1, "sssss", $cardname, $hashedCardnum, $expmn, $cvv, $expyr);
+    mysqli_stmt_bind_param($stmt1, "sssss", $cardname, $encodedCardnum, $expmn, $cvv, $expyr);
     $res1 = mysqli_stmt_execute($stmt1);
 
     $sql2 = "INSERT INTO Billadd(Full_Name, Email, Address, City) VALUES (?, ?, ?, ?)";
